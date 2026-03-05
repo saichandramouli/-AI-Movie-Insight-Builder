@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 AI Movie Insight
 
-## Getting Started
+AI Movie Insight is a web application that allows users to search for movies using an IMDb ID and retrieve detailed movie information along with an AI-generated audience sentiment summary.
 
-First, run the development server:
+The application fetches movie data from the OMDb API and generates a sentiment-based summary to provide quick insights into audience reactions.
 
-```bash
+---
+
+# 🚀 Live Demo
+
+Deployed Application:  
+https://your-vercel-link.vercel.app
+
+GitHub Repository:  
+https://github.com/saichandramouli/-AI-Movie-Insight-Builder
+
+---
+
+# ✨ Features
+
+- Search movies using IMDb ID
+- Display movie poster, title, plot, cast, release year, and IMDb rating
+- AI-powered audience sentiment summary
+- Sentiment score for audience reaction
+- Responsive user interface
+- Fully deployed web application
+
+---
+
+# 🛠 Tech Stack
+
+Frontend:
+- Next.js
+- React
+- CSS
+
+Backend:
+- Next.js API Routes
+
+APIs:
+- OMDb API – Fetch movie data
+- OpenAI API – Generate audience sentiment summary
+
+Deployment:
+- Vercel
+
+---
+
+# ⚙️ Setup Instructions
+
+Follow these steps to run the project locally.
+
+## 1. Clone the repository
+
+git clone https://github.com/your-username/ai-movie-insight.git
+
+## 2. Navigate to the project folder
+
+cd ai-movie-insight
+
+## 3. Install dependencies
+
+npm install
+
+## 4. Create environment variables
+
+Create a file named `.env.local` in the root folder and add:
+
+OMDB_API_KEY=your_omdb_api_key  
+OPENAI_API_KEY=your_openai_api_key
+
+## 5. Run the development server
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the application in your browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+# 🔍 Example IMDb IDs
 
-To learn more about Next.js, take a look at the following resources:
+You can test the application using these IMDb IDs:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+tt0111161  → The Shawshank Redemption  
+tt0133093  → The Matrix  
+tt0468569  → The Dark Knight  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# 🧠 Tech Stack Rationale
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Next.js was chosen because it allows building both frontend and backend in one framework using API routes. It also provides good performance and easy deployment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+React was used for building reusable UI components and managing the interface efficiently.
+
+OMDb API provides reliable movie data such as poster, cast, plot, and ratings.
+
+OpenAI API is used to generate an AI-based audience sentiment summary from available data.
+
+Vercel was chosen for deployment because it provides seamless support for Next.js applications and simple GitHub integration.
+
+---
+
+# 📌 Assumptions
+
+Users provide a valid IMDb ID when searching for a movie.
+
+Movie information exists in the OMDb database.
+
+Sentiment analysis is generated based on available data and may not represent all audience opinions.
+
+Environment variables such as API keys must be configured correctly before running the application.
+
+Internet access is required for fetching movie data and generating sentiment analysis.
+
+---
+
+# ☁️ Deployment
+
+This project is deployed using Vercel.
+
+Deployment steps:
+
+1. Push the project to GitHub
+2. Import the repository into Vercel
+3. Add environment variables
+4. Deploy the application
+
+---
+
+# 👨‍💻 Author
+
+Aranala Sai Chandramouli  
+Email: aranalasaichandramouli@gmail.com
+
+---
