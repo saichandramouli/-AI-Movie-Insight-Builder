@@ -9,7 +9,7 @@ The application fetches movie data from the OMDb API and generates a sentiment-b
 # 🚀 Live Demo
 
 Deployed Application:  
-https://your-vercel-link.vercel.app
+https://ai-movie-insight-phi-eight.vercel.app/
 
 GitHub Repository:  
 https://github.com/saichandramouli/-AI-Movie-Insight-Builder
