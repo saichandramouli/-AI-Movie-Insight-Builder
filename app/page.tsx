@@ -1,65 +1,190 @@
-import Image from "next/image";
+"use client"
+
+import { useState } from "react"
+import { Search, ImageIcon, Star, Brain } from "lucide-react"
+import axios from "axios"
+import MovieCard from "@/components/MovieCard"
 
 export default function Home() {
+
+  const [imdbId, setImdbId] = useState("")
+  const [data, setData] = useState<any>(null)
+
+  async function handleSearch() {
+    if (!imdbId) return
+    const res = await axios.post("/api/movie", { imdbId })
+    setData(res.data)
+  }
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <main style={{display:"flex", flexDirection:"column", alignItems:"center", padding:"40px"}}>
+
+      {/* NAVBAR */}
+
+      <h2 style={{color:"#60a5fa", marginBottom:"30px"}}>
+        🎬 Movie Insight
+      </h2>
+
+      {/* SMALL SEARCH BAR */}
+
+      <div style={{
+        display:"flex",
+        alignItems:"center",
+        background:"#1e293b",
+        border:"1px solid #334155",
+        borderRadius:"8px",
+        padding:"6px 10px",
+        width:"350px",
+        marginBottom:"40px"
+      }}>
+
+        <Search size={16} color="#94a3b8" />
+
+        <input
+          value={imdbId}
+          onChange={(e)=>setImdbId(e.target.value)}
+          placeholder="Enter IMDb ID"
+          style={{
+            background:"transparent",
+            border:"none",
+            outline:"none",
+            color:"white",
+            marginLeft:"8px",
+            flex:1
+          }}
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+
+        <button
+          onClick={handleSearch}
+          style={{
+            background:"#2563eb",
+            color:"white",
+            border:"none",
+            borderRadius:"6px",
+            padding:"4px 10px",
+            cursor:"pointer"
+          }}
+        >
+          Search
+        </button>
+
+      </div>
+
+      {/* MOVIE RESULT */}
+
+      {data ? (
+
+        <div style={{width:"900px"}}>
+          <MovieCard
+            movie={data.movie}
+            sentiment={data.sentiment}
+            summary={data.summary}
+            score={data.score}
+          />
+        </div>
+
+      ) : (
+
+        <>
+
+        {/* HERO */}
+
+        <div style={{textAlign:"center", marginBottom:"30px"}}>
+
+          <h1 style={{fontSize:"32px", fontWeight:"bold"}}>
+            Discover <span style={{color:"#3b82f6"}}>Cinematic Gems</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p style={{color:"#9ca3af", fontSize:"14px"}}>
+            Example: tt0111161 (The Shawshank Redemption)
           </p>
+
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* SMALL FEATURE BOXES */}
+
+        <div style={{
+          display:"flex",
+          gap:"20px",
+          width:"800px",
+          justifyContent:"center"
+        }}>
+
+          {/* BOX 1 */}
+
+          <div style={{
+            background:"#0f172a",
+            border:"1px solid #1e293b",
+            borderRadius:"10px",
+            padding:"16px",
+            width:"220px",
+            textAlign:"center"
+          }}>
+
+            <ImageIcon size={20} color="#60a5fa"/>
+
+            <h4 style={{marginTop:"8px"}}>
+              Instant Poster
+            </h4>
+
+            <p style={{fontSize:"12px", color:"#9ca3af"}}>
+              Fetch movie posters instantly.
+            </p>
+
+          </div>
+
+          {/* BOX 2 */}
+
+          <div style={{
+            background:"#0f172a",
+            border:"1px solid #1e293b",
+            borderRadius:"10px",
+            padding:"16px",
+            width:"220px",
+            textAlign:"center"
+          }}>
+
+            <Star size={20} color="#facc15"/>
+
+            <h4 style={{marginTop:"8px"}}>
+              IMDb Ratings
+            </h4>
+
+            <p style={{fontSize:"12px", color:"#9ca3af"}}>
+              Sync ratings directly from IMDb.
+            </p>
+
+          </div>
+
+          {/* BOX 3 */}
+
+          <div style={{
+            background:"#0f172a",
+            border:"1px solid #1e293b",
+            borderRadius:"10px",
+            padding:"16px",
+            width:"220px",
+            textAlign:"center"
+          }}>
+
+            <Brain size={20} color="#60a5fa"/>
+
+            <h4 style={{marginTop:"8px"}}>
+              AI Insights
+            </h4>
+
+            <p style={{fontSize:"12px", color:"#9ca3af"}}>
+              AI generated audience sentiment.
+            </p>
+
+          </div>
+
         </div>
-      </main>
-    </div>
-  );
+
+        </>
+
+      )}
+
+    </main>
+  )
 }
